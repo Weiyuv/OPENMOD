@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cacff3472954bbbb4f4dc5bcc0822f, type: 3}
+  m_Name: New Procedural Texture 2D
+  m_EditorClassIdentifier: 
+  input: {fileID: 0}
+  type: 0
+  includeAlpha: 0
+  generateMipMaps: 1
+  filterMode: 2
+  anisoLevel: 16
+  compressionQuality: 100
+  Tinput: {fileID: 0}
+  invT: {fileID: 0}
+  colorSpaceOrigin: {x: 0, y: 0, z: 0}
+  colorSpaceVector1: {x: 0, y: 0, z: 0}
+  colorSpaceVector2: {x: 0, y: 0, z: 0}
+  colorSpaceVector3: {x: 0, y: 0, z: 0}
+  compressionScalers: {x: 0, y: 0, z: 0, w: 0}
+  memoryUsageBytes: 0
+  currentInput: {fileID: 0}
+  currentType: 0
+  currentIncludeAlpha: 0
+  currentGenerateMipMaps: 0
+  currentFilterMode: 0
+  currentAnisoLevel: 0
+  currentCompressionQuality: 0
