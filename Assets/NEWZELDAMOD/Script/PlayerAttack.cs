@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +25,8 @@ public class PlayerAttack : MonoBehaviour
     float weight;
     FixedJoint joint;
 
+    private WeaponInteract weaponInteract;
+
     void Start()
     {
         if (SceneManager.GetActiveScene().name.Equals("Land"))
@@ -37,6 +38,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         currentCamera = Camera.main.gameObject;
+        weaponInteract = GetComponent<WeaponInteract>();
     }
 
     private void Update()
@@ -70,7 +72,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             anim.SetTrigger("PunchA");
-            // O dano será aplicado no evento de animação Hit()
+            // O dano só vai ser aplicado no Animation Event (Hit)
         }
 
         if (Input.GetButton("Fire1"))
@@ -167,49 +169,6 @@ public class PlayerAttack : MonoBehaviour
                 anim.SetIKRotation(AvatarIKGoal.LeftHand, leftHandObj.rotation);
             }
         }
-
-        if (closeThing && !haveWeapons)
-        {
-            Vector3 handDirection = closeThing.transform.position - transform.position;
-            float lookto = Vector3.Dot(handDirection.normalized, transform.forward);
-            weight = Mathf.Lerp(weight, (lookto * 3 / (Mathf.Pow(handDirection.magnitude, 3))), Time.fixedDeltaTime * 2);
-
-            anim.SetIKPositionWeight(AvatarIKGoal.RightHand, weight);
-            anim.SetIKRotationWeight(AvatarIKGoal.RightHand, weight);
-            anim.SetIKPosition(AvatarIKGoal.RightHand, closeThing.transform.position + transform.right * 0.1f);
-            anim.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.identity);
-
-            anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, weight);
-            anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, weight);
-            anim.SetIKPosition(AvatarIKGoal.LeftHand, closeThing.transform.position - transform.right * 0.1f);
-            anim.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.identity);
-
-            if (Input.GetButtonDown("Fire1"))
-            {
-                // Código para criar ou destruir o FixedJoint para segurar objetos
-            }
-
-            if (weight <= 0)
-            {
-                Destroy(closeThing);
-                if (joint)
-                {
-                    Destroy(joint);
-                    return;
-                }
-            }
-
-            if (grounded && weight > 0)
-            {
-                Vector3 footDirection = Vector3.down;
-                float lookTo = Vector3.Dot(footDirection.normalized, transform.forward);
-                weight = Mathf.Lerp(weight, (lookTo * 3 / (Mathf.Pow(footDirection.magnitude, 3))), Time.fixedDeltaTime * 2);
-                anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, weight);
-                anim.SetIKRotationWeight(AvatarIKGoal.LeftFoot, weight);
-                anim.SetIKPosition(AvatarIKGoal.LeftFoot, closeThing.transform.position - transform.right * 0.1f);
-                anim.SetIKRotation(AvatarIKGoal.LeftFoot, Quaternion.identity);
-            }
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -254,7 +213,9 @@ public class PlayerAttack : MonoBehaviour
         flyvelocity = Mathf.Clamp(flyvelocity, 0, 5);
     }
 
-    // Animation Event deve chamar esse método no momento do ataque
+    /// <summary>
+    /// Evento chamado pela animação (Animation Event "Hit")
+    /// </summary>
     public void Hit()
     {
         DealDamage();
@@ -262,12 +223,20 @@ public class PlayerAttack : MonoBehaviour
 
     void DealDamage()
     {
-        RaycastHit hit;
-        float attackRange = 4f;
+        if (!haveWeapons)
+        {
+            Debug.Log("Tentou atacar sem arma.");
+            return;
+        }
+
+        Vector3 attackOrigin = weaponInteract.rightHand.position;  // Posição da mão direita
+        Vector3 attackDirection = transform.forward;
+        float attackRange = 5f;  // Aumente se quiser mais alcance
         int damage = 20;
         LayerMask enemyLayer = LayerMask.GetMask("Enemy");
 
-        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, transform.forward, out hit, attackRange, enemyLayer))
+        RaycastHit hit;
+        if (Physics.Raycast(attackOrigin, attackDirection, out hit, attackRange, enemyLayer))
         {
             Debug.Log("Acertou inimigo: " + hit.collider.name);
             Vida enemyVida = hit.collider.GetComponent<Vida>();
@@ -278,7 +247,7 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-            Debug.Log("Ataque não acertou ninguém");
+            Debug.Log("Ataque não acertou ninguém.");
         }
     }
 }
