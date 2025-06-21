@@ -10,7 +10,7 @@ public class IAStarFPS : MonoBehaviour
     public NavMeshAgent agent;
     public Animator anim;
     public SkinnedMeshRenderer render;
-    public float DistanceToAttack=3;
+    public float DistanceToAttack = 3;
     public enum States
     {
         pursuit,
@@ -28,7 +28,7 @@ public class IAStarFPS : MonoBehaviour
     {
         if (!target)
         {
-            target= GameObject.FindGameObjectWithTag("Player");
+            target = GameObject.FindGameObjectWithTag("Player");
         }
         StartCoroutine("StoppedState");
     }
@@ -41,14 +41,14 @@ public class IAStarFPS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         anim.SetFloat("Velocidade", agent.velocity.magnitude);
 
     }
 
     void StateMachine(States _state)
     {
-        state= _state;
+        state = _state;
         switch (state)
         {
             case States.pursuit:
@@ -77,13 +77,13 @@ public class IAStarFPS : MonoBehaviour
         pos = transform.position + new Vector3(UnityEngine.Random.Range(-range, range)
             , 0
             , UnityEngine.Random.Range(-range, range));
-          return pos;
+        return pos;
     }
     private IEnumerator Patrol()
     {
         agent.isStopped = false;
         agent.destination = RandomPosition(20);
-      
+
         anim.SetBool("Attack", false);
         anim.SetBool("Damage", false);
         yield return new WaitForSeconds(1);
@@ -102,8 +102,8 @@ public class IAStarFPS : MonoBehaviour
         }
     }
 
-    
-    
+
+
     IEnumerator DamageState()
     {
         agent.isStopped = true;
@@ -122,7 +122,7 @@ public class IAStarFPS : MonoBehaviour
     {
         StopAllCoroutines();
         StateMachine(States.dead);
-       
+
     }
 
 
@@ -143,7 +143,7 @@ public class IAStarFPS : MonoBehaviour
             StateMachine(state = States.stoped);
         }
         else
-        { 
+        {
             StateMachine(States.pursuit);
         }
     }
@@ -160,7 +160,7 @@ public class IAStarFPS : MonoBehaviour
         }
         else
         {
-           
+
             StateMachine(States.atacking);
         }
     }
@@ -174,7 +174,8 @@ public class IAStarFPS : MonoBehaviour
         if (Vector3.Distance(transform.position, target.transform.position) < DistanceToAttack * 3)
         {
             StateMachine(States.pursuit);
-        }else
+        }
+        else
         if (UnityEngine.Random.value > 0.5)
         {
             StateMachine(States.patrol);
@@ -196,7 +197,7 @@ public class IAStarFPS : MonoBehaviour
     }
 
 
-   //keep the ik foot on the ground
-  
+    //keep the ik foot on the ground
+
 
 }
