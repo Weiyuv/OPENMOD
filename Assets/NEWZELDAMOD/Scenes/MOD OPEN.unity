@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrain: {fileID: 1778553073}
   mobPrefab: {fileID: 3967108684766030035, guid: 1c8950e890f8de640b645d9ccc90ffa4, type: 3}
-  mobCount: 200
+  mobCount: 350
   spawnAreaMargin: 1500
   minDistanceBetweenMobs: 100
 --- !u!4 &502070312
@@ -3935,7 +3935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrain: {fileID: 1778553073}
   mobPrefab: {fileID: 2341452322090143513, guid: 65c9400e747142149ac903ff63f5db6c, type: 3}
-  mobCount: 700
+  mobCount: 1500
   spawnAreaMargin: 1500
   minDistanceBetweenMobs: 100
 --- !u!4 &1187957078
