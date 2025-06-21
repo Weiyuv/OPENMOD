@@ -1224,7 +1224,6 @@ GameObject:
   - component: {fileID: 8662226209580782195}
   - component: {fileID: 2352780004984079613}
   - component: {fileID: 8963198833182594880}
-  - component: {fileID: 3546434124306756574}
   - component: {fileID: 3984772761672229192}
   m_Layer: 7
   m_Name: Red
@@ -1395,22 +1394,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!208 &3546434124306756574
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139696}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 2, y: 1, z: 5.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 2, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &3984772761672229192
 MonoBehaviour:
   m_ObjectHideFlags: 0
