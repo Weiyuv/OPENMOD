@@ -431,6 +431,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1114551723477073079, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.17
+      objectReference: {fileID: 0}
     - target: {fileID: 2012696493311067274, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.6
@@ -1952,7 +1956,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 5, y: 3.34, z: 3.0303268}
   m_Center: {x: 2.5, y: 0.5, z: -1.5151634}
@@ -2985,19 +2989,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2352780004984079613, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
       propertyPath: m_Radius
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2352780004984079613, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
       propertyPath: m_AgentTypeID
       value: -334000983
       objectReference: {fileID: 0}
     - target: {fileID: 3135493568156713950, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135493568156713950, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135493568156713950, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
+      propertyPath: m_Size.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135493568156713950, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135493568156713950, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3984772761672229192, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
+      propertyPath: maxHealth
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8662226209580782195, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
       propertyPath: DistanceToAttack
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9186006433421947331, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
