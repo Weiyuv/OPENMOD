@@ -77,7 +77,7 @@ public class MoveChanPhisical : MonoBehaviour
 
         if (Input.GetButton("Fire1") && wing.activeSelf)
         {
-            rdb.AddRelativeForce(Vector3.forward * 10000);
+            rdb.AddRelativeForce(Vector3.forward * 5000);
         }
 
         grounded = false;

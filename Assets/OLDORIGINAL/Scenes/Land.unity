@@ -13398,7 +13398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1938686124}
-  jumpForce: 30
+  jumpForce: 65
   jumpEffectPrefab: {fileID: 0}
 --- !u!1 &1953066807 stripped
 GameObject:
