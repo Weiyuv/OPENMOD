@@ -5,23 +5,38 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/OLDORIGINAL/Scenes/Menu.unity
     guid: ebd3ca197794bb544baebe4c4709d560
-  - enabled: 1
+  - enabled: 0
     path: Assets/OLDORIGINAL/Scenes/Land.unity
     guid: b3d4126d058fc1a47a4df48502a6a692
-  - enabled: 1
+  - enabled: 0
     path: Assets/OLDORIGINAL/Scenes/Cidade1.unity
     guid: 21d0fac2911ca7e4fb28b2a1353f5897
-  - enabled: 1
+  - enabled: 0
     path: Assets/OLDORIGINAL/Scenes/CidadeGelo.unity
     guid: 059bb874476c0544c8acc120fb1f8430
-  - enabled: 1
+  - enabled: 0
     path: Assets/OLDORIGINAL/Scenes/Volcano.unity
     guid: b3e8d6c9ff3e7054d8cb2b07defb5d3a
-  - enabled: 1
+  - enabled: 0
     path: Assets/OLDORIGINAL/Scenes/Shirines/Shrine01.unity
     guid: 626ee094935379e43a55611ffc857828
+  - enabled: 1
+    path: Assets/NEWZELDAMOD/Scenes/MOD OPEN.unity
+    guid: 8af5c1545a7ab3946a869f957646353b
+  - enabled: 1
+    path: Assets/NEWZELDAMOD/Scenes/Shrine1.unity
+    guid: eb78c0ef4300a63458b5db685241f3ca
+  - enabled: 1
+    path: Assets/NEWZELDAMOD/Scenes/Shrine02.unity
+    guid: dc303f86cc249ee43838db7f35b2697d
+  - enabled: 1
+    path: Assets/NEWZELDAMOD/Scenes/Shrine03.unity
+    guid: 913a2fb1987671f4288e4a6029374494
+  - enabled: 1
+    path: Assets/NEWZELDAMOD/Scenes/Shrine04.unity
+    guid: fdb8db6bc27d9ae4b889dda37669d26f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

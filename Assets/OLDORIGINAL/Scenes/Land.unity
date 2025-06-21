@@ -8017,8 +8017,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15487686, y: 0.34154966, z: -0.057171702, w: 0.9252505}
-  m_LocalPosition: {x: 31.640041, y: 42.25, z: -148.66296}
+  m_LocalRotation: {x: 0.119372614, y: -0.000000018596769, z: 0.000000002235933, w: 0.9928495}
+  m_LocalPosition: {x: 3.6, y: 4.66, z: -5.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12298,13 +12298,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f7d1376c98fdc478f112284ec81418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterLevel: 31
+  AlturaAgua: 31
   rdb: {fileID: 0}
   anim: {fileID: 0}
   currentCamera: {fileID: 0}
   jumpspeed: 8
   gravity: 20
-  haveWeapons: 0
   wing: {fileID: 0}
   rightHandObj: {fileID: 0}
   leftHandObj: {fileID: 0}
@@ -14005,10 +14004,6 @@ PrefabInstance:
     - target: {fileID: 2012696493311170922, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
       propertyPath: m_Name
       value: unitychan Phisical
-      objectReference: {fileID: 0}
-    - target: {fileID: 8459907201388031273, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
-      propertyPath: haveWeapons
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

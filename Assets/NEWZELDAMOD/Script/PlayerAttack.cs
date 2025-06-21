@@ -1,3 +1,4 @@
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public int waterLevel = 31;
+    public int AlturaAgua = 31;
+
     public Rigidbody rdb;
     public Animator anim;
     Vector3 movaxis;
     public GameObject currentCamera;
     public float jumpspeed = 8;
     public float gravity = 20;
-    public bool haveWeapons = false;
 
     float jumptime;
     float flyvelocity = 3;
@@ -25,8 +26,6 @@ public class PlayerAttack : MonoBehaviour
     float weight;
     FixedJoint joint;
 
-    private WeaponInteract weaponInteract;
-
     void Start()
     {
         if (SceneManager.GetActiveScene().name.Equals("Land"))
@@ -38,7 +37,6 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         currentCamera = Camera.main.gameObject;
-        weaponInteract = GetComponent<WeaponInteract>();
     }
 
     private void Update()
@@ -72,7 +70,6 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             anim.SetTrigger("PunchA");
-            // O dano só vai ser aplicado no Animation Event (Hit)
         }
 
         if (Input.GetButton("Fire1"))
@@ -93,12 +90,10 @@ public class PlayerAttack : MonoBehaviour
             {
                 grounded = true;
             }
-
             if (grounded && jumpbtn)
             {
                 jumptime = 0.25f;
             }
-
             if (!grounded && jumpbtndown && !wing.activeSelf)
             {
                 wing.SetActive(true);
@@ -141,7 +136,7 @@ public class PlayerAttack : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, rottogo, Time.fixedDeltaTime * 50);
         }
 
-        if (transform.position.y < waterLevel)
+        if (transform.position.y < AlturaAgua)
         {
             rdb.AddForce(Vector3.up * 1200);
             rdb.linearDamping = 4;
@@ -167,6 +162,38 @@ public class PlayerAttack : MonoBehaviour
                 anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
                 anim.SetIKPosition(AvatarIKGoal.LeftHand, leftHandObj.position);
                 anim.SetIKRotation(AvatarIKGoal.LeftHand, leftHandObj.rotation);
+            }
+        }
+
+        if (closeThing)
+        {
+            Vector3 handDirection = closeThing.transform.position - transform.position;
+            float lookto = Vector3.Dot(handDirection.normalized, transform.forward);
+            weight = Mathf.Lerp(weight, (lookto * 3 / (Mathf.Pow(handDirection.magnitude, 3))), Time.fixedDeltaTime * 2);
+
+            anim.SetIKPositionWeight(AvatarIKGoal.RightHand, weight);
+            anim.SetIKRotationWeight(AvatarIKGoal.RightHand, weight);
+            anim.SetIKPosition(AvatarIKGoal.RightHand, closeThing.transform.position + transform.right * 0.1f);
+            anim.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.identity);
+
+            anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, weight);
+            anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, weight);
+            anim.SetIKPosition(AvatarIKGoal.LeftHand, closeThing.transform.position - transform.right * 0.1f);
+            anim.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.identity);
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                // LÃ³gica de segurar objeto
+            }
+
+            if (weight <= 0)
+            {
+                Destroy(closeThing);
+                if (joint)
+                {
+                    Destroy(joint);
+                    return;
+                }
             }
         }
     }
@@ -213,9 +240,10 @@ public class PlayerAttack : MonoBehaviour
         flyvelocity = Mathf.Clamp(flyvelocity, 0, 5);
     }
 
-    /// <summary>
-    /// Evento chamado pela animação (Animation Event "Hit")
-    /// </summary>
+    // =========================
+    // SISTEMA DE DANO AQUI ðŸ‘‡ðŸ‘‡
+    // =========================
+
     public void Hit()
     {
         DealDamage();
@@ -223,31 +251,27 @@ public class PlayerAttack : MonoBehaviour
 
     void DealDamage()
     {
-        if (!haveWeapons)
-        {
-            Debug.Log("Tentou atacar sem arma.");
-            return;
-        }
-
-        Vector3 attackOrigin = weaponInteract.rightHand.position;  // Posição da mão direita
-        Vector3 attackDirection = transform.forward;
-        float attackRange = 5f;  // Aumente se quiser mais alcance
-        int damage = 20;
+        float range = 3f;  // DistÃ¢ncia do ataque
+        int damage = 20;   // Dano causado
         LayerMask enemyLayer = LayerMask.GetMask("Enemy");
 
         RaycastHit hit;
-        if (Physics.Raycast(attackOrigin, attackDirection, out hit, attackRange, enemyLayer))
+        Vector3 origin = transform.position + Vector3.up;  // Origem um pouco acima do chÃ£o
+        Vector3 direction = transform.forward;
+
+        if (Physics.Raycast(origin, direction, out hit, range, enemyLayer))
         {
             Debug.Log("Acertou inimigo: " + hit.collider.name);
-            Vida enemyVida = hit.collider.GetComponent<Vida>();
-            if (enemyVida != null)
+
+            Vida vida = hit.collider.GetComponent<Vida>();
+            if (vida != null)
             {
-                enemyVida.TakeDamage(damage);
+                vida.TakeDamage(damage);
             }
         }
         else
         {
-            Debug.Log("Ataque não acertou ninguém.");
+            Debug.Log("Ataque nÃ£o acertou ninguÃ©m.");
         }
     }
 }

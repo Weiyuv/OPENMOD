@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1148787486195956976, guid: 40daa8e1b273a644f81288fa519caf50, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1148787486195956976, guid: 40daa8e1b273a644f81288fa519caf50, type: 3}
       propertyPath: leftHandObj
@@ -1106,18 +1106,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012696493311170922}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6f7d1376c98fdc478f112284ec81418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterLevel: 31
+  AlturaAgua: 31
   rdb: {fileID: 7046437972623310166}
   anim: {fileID: 2012696493318597386}
   currentCamera: {fileID: 0}
   jumpspeed: 10000
   gravity: 20
-  haveWeapons: 0
   wing: {fileID: 1704363120397041615}
   rightHandObj: {fileID: 7046437972481681436}
   leftHandObj: {fileID: 7046437972115824584}

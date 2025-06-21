@@ -17,7 +17,7 @@ public class MoveChan : MonoBehaviour
     public GameObject wing;
     public Transform rightHandObj, leftHandObj;
     bool jumpbtn = false;
-    bool jumpbtnrelease = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +26,9 @@ public class MoveChan : MonoBehaviour
         {
             if (PlayerPrefs.HasKey("OldPlayerPosition")) //checa se existe a chave do save
             {
-                print("movendo "+ PlayerPrefsX.GetVector3("OldPlayerPosition")); 
+                print("movendo " + PlayerPrefsX.GetVector3("OldPlayerPosition"));
                 transform.position = PlayerPrefsX.GetVector3("OldPlayerPosition");  //coloca o player no ultimo lugar salvo
-               // Debug.Break();
+                                                                                    // Debug.Break();
             }
         }
         currentCamera = Camera.main.gameObject;     //busca a camera do jogador
@@ -36,7 +36,7 @@ public class MoveChan : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetButtonDown("Jump"))     //se apertar pulo
+        if (Input.GetButtonDown("Jump"))     //se apertar pulo
         {
             if (!charctrl.enabled) //codigo de saida da vagoneta
             {
@@ -81,23 +81,23 @@ public class MoveChan : MonoBehaviour
         //se a asa estiver ativa
         if (wing.activeSelf)
         {
-           //troca o movimento para o movimento de planeio
-            Vector3 movfly = new Vector3(Vector3.forward.x* flyvelocity, yresult- (flyvelocity-3), Vector3.forward.z* flyvelocity);
+            //troca o movimento para o movimento de planeio
+            Vector3 movfly = new Vector3(Vector3.forward.x * flyvelocity, yresult - (flyvelocity - 3), Vector3.forward.z * flyvelocity);
             charctrl.Move(transform.TransformVector(movfly) * 0.1f);
 
             //calcula os angulos normais pra retorno da asa papa posicao estavel
             float angz = Vector3.Dot(transform.right, Vector3.up);
             float angx = Vector3.Dot(transform.forward, Vector3.up);
-            movfly = new Vector3(movaxis.z+ angx*2, -angz, -movaxis.x- angz);
+            movfly = new Vector3(movaxis.z + angx * 2, -angz, -movaxis.x - angz);
             //aplica a rotacao para a estabilidade
             transform.Rotate(movfly);
             //modifica a rotacao somente da asa para efeito visual
-            wing.transform.localRotation = Quaternion.Euler(0, 0, angz*50);
+            wing.transform.localRotation = Quaternion.Euler(0, 0, angz * 50);
 
             //calcula as velocidades de voo
-            flyvelocity -= angx*0.01f;
+            flyvelocity -= angx * 0.01f;
             flyvelocity = Mathf.Lerp(flyvelocity, 3, Time.fixedDeltaTime);
-            flyvelocity = Mathf.Clamp(flyvelocity,0,5);
+            flyvelocity = Mathf.Clamp(flyvelocity, 0, 5);
         }
         else //personagem esta no chao 
         {
@@ -129,10 +129,10 @@ public class MoveChan : MonoBehaviour
 
         //raycast pra detectar o chao e fazer o pulo proporcional
         RaycastHit hit;
-        if (Physics.Raycast(transform.position-(transform.forward*0.1f)+transform.up*0.3f, Vector3.down,out hit, 1000))
+        if (Physics.Raycast(transform.position - (transform.forward * 0.1f) + transform.up * 0.3f, Vector3.down, out hit, 1000))
         {
             anim.SetFloat("JumpHeight", hit.distance);
-            if(hit.distance>0.5f && jumpbtn && !wing.activeSelf)
+            if (hit.distance > 0.5f && jumpbtn && !wing.activeSelf)
             {
                 wing.SetActive(true);
                 yresult = .1f;
@@ -144,7 +144,7 @@ public class MoveChan : MonoBehaviour
             {
                 wing.SetActive(false);
                 jumpbtn = false;
-              
+
             }
 
         }

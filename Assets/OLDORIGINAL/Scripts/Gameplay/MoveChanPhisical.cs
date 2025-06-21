@@ -1,25 +1,22 @@
-﻿// Importando bibliotecas necessárias
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Classe MoveChanPhisical herda de MonoBehaviour
 public class MoveChanPhisical : MonoBehaviour
 {
-    //usado para boiar
-    public int waterLevel = 31;
-    // Variáveis públicas
+    public int AlturaAgua = 31;
+
     public Rigidbody rdb;
     public Animator anim;
     Vector3 movaxis;
     public GameObject currentCamera;
     public float jumpspeed = 8;
     public float gravity = 20;
-    public bool haveWeapons = false;
 
-    // Variáveis privadas
+    public bool haveWeapons = false;  // <-- Adicionado aqui ✅
+
     float jumptime;
     float flyvelocity = 3;
     public GameObject wing;
@@ -31,28 +28,21 @@ public class MoveChanPhisical : MonoBehaviour
     float weight;
     FixedJoint joint;
 
-    // Método Start é chamado antes do primeiro frame
     void Start()
     {
-        // Verifica se o nome da cena ativa é "Land"
         if (SceneManager.GetActiveScene().name.Equals("Land"))
         {
-            // Verifica se há uma posição antiga do jogador
             if (PlayerPrefs.HasKey("OldPlayerPosition"))
             {
-                // Move o jogador para a posição antiga
                 print("movendo " + PlayerPrefsX.GetVector3("OldPlayerPosition"));
                 transform.position = PlayerPrefsX.GetVector3("OldPlayerPosition");
             }
         }
-        // Define a câmera principal como a câmera atual
         currentCamera = Camera.main.gameObject;
     }
 
-    // Método Update é chamado a cada frame
     private void Update()
     {
-        // Lida com o botão de pular
         if (Input.GetButtonDown("Jump"))
         {
             jumpbtn = true;
@@ -63,67 +53,49 @@ public class MoveChanPhisical : MonoBehaviour
             jumpbtn = false;
             jumptime = 0;
         }
-
-       
     }
 
-    // Método FixedUpdate é chamado a cada frame em intervalos fixos
     void FixedUpdate()
     {
-
-        // Atualiza o eixo de movimento com base no input do usuário
         movaxis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-        // Define a animação de velocidade
         anim.SetFloat("Speed", rdb.linearVelocity.magnitude);
 
-        // Verifica se as asas estão ativas
         if (wing.activeSelf)
         {
-            // Código para controlar o voo do personagem
             FlyControl();
         }
         else
         {
-            // Código para controlar o movimento do personagem no chão
             GroundControl();
         }
 
-        // Lida com o botão de ataque
         if (Input.GetButtonDown("Fire1"))
         {
             anim.SetTrigger("PunchA");
+            Hit(); // Chama o ataque quando apertar o botão
         }
 
-        // Código para controlar o personagem enquanto ataca
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && wing.activeSelf)
         {
-            // Código para controlar o personagem enquanto ataca e está voando
-            if (wing.activeSelf)
-            {
-                rdb.AddRelativeForce(Vector3.forward * 10000);
-            }
+            rdb.AddRelativeForce(Vector3.forward * 10000);
         }
+
         grounded = false;
-        // Raycast para verificar a distância do personagem ao chão
         RaycastHit hit;
         if (Physics.Raycast(transform.position - (transform.forward * 0.1f) + transform.up * 0.3f, Vector3.down, out hit, 1000))
         {
             anim.SetFloat("JumpHeight", hit.distance);
 
-            if (hit.distance < 0.5f )
+            if (hit.distance < 0.5f)
             {
-               
                 grounded = true;
             }
-            // Verifica se o personagem está no chão e o botão de pular está pressionado
+
             if (grounded && jumpbtn)
             {
                 jumptime = 0.25f;
-               
             }
 
-            // Lida com a ativação e desativação das asas
             if (!grounded && jumpbtndown && !wing.activeSelf)
             {
                 wing.SetActive(true);
@@ -136,7 +108,6 @@ public class MoveChanPhisical : MonoBehaviour
             }
         }
 
-        // Controla o impulso do pulo
         if (jumpbtn)
         {
             jumptime -= Time.fixedDeltaTime;
@@ -149,10 +120,9 @@ public class MoveChanPhisical : MonoBehaviour
 
     private void GroundControl()
     {
-        // Calcula a direção relativa de movimento com base na câmera
         Vector3 relativedirection = currentCamera.transform.TransformVector(movaxis).normalized;
         relativedirection = new Vector3(relativedirection.x, jumptime, relativedirection.z);
-        Vector3 relativeDirectionWOy = new Vector3(relativedirection.x, 0, relativedirection.z); 
+        Vector3 relativeDirectionWOy = new Vector3(relativedirection.x, 0, relativedirection.z);
         if (grounded)
         {
             rdb.linearVelocity = new Vector3(relativedirection.x * 5, rdb.linearVelocity.y, relativedirection.z * 5);
@@ -162,60 +132,42 @@ public class MoveChanPhisical : MonoBehaviour
             rdb.AddForce(new Vector3(relativedirection.x * 500, 0, relativedirection.z * 500));
         }
 
-
         if (!joint)
         {
             Quaternion rottogo = Quaternion.LookRotation(relativeDirectionWOy * 2 + transform.forward);
             transform.rotation = Quaternion.Lerp(transform.rotation, rottogo, Time.fixedDeltaTime * 50);
         }
-        //boiar
-        if (transform.position.y < waterLevel)
+
+        if (transform.position.y < AlturaAgua)
         {
-            rdb.AddForce(Vector3.up* 1200);
+            rdb.AddForce(Vector3.up * 1200);
             rdb.linearDamping = 4;
         }
         else
         {
             rdb.linearDamping = 1;
         }
-
     }
-      
-           
 
-    // Método OnAnimatorIK é chamado para calcular a cinemática inversa (IK)
     void OnAnimatorIK()
     {
-        // Código para controlar as mãos do personagem enquanto voa
-        if (wing.activeSelf)
+        if (wing.activeSelf && rightHandObj != null)
         {
-            // Código para controlar a posição e rotação das mãos do personagem
-            if (rightHandObj != null)
-            {
+            anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+            anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
+            anim.SetIKPosition(AvatarIKGoal.RightHand, rightHandObj.position);
+            anim.SetIKRotation(AvatarIKGoal.RightHand, rightHandObj.rotation);
 
-                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
-                anim.SetIKPosition(AvatarIKGoal.RightHand, rightHandObj.position);
-                anim.SetIKRotation(AvatarIKGoal.RightHand, rightHandObj.rotation);
-
-                anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
-                anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
-                anim.SetIKPosition(AvatarIKGoal.LeftHand, leftHandObj.position);
-                anim.SetIKRotation(AvatarIKGoal.LeftHand, leftHandObj.rotation);
-
-            }
+            anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+            anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+            anim.SetIKPosition(AvatarIKGoal.LeftHand, leftHandObj.position);
+            anim.SetIKRotation(AvatarIKGoal.LeftHand, leftHandObj.rotation);
         }
 
-        // Lida com a interação do personagem com objetos próximos
-        if (closeThing && !haveWeapons)
+        if (closeThing)
         {
-            // Código para calcular a direção e peso das mãos do personagem ao interagir com objetos próximos
-
-            //calcula a direcao do ponto de toque para a personagem
             Vector3 handDirection = closeThing.transform.position - transform.position;
-            //verifica se o objeto ta na frente do personagem >0
             float lookto = Vector3.Dot(handDirection.normalized, transform.forward);
-            //calcula e interpola o peso pela formula (l*3)/distancia^3
             weight = Mathf.Lerp(weight, (lookto * 3 / (Mathf.Pow(handDirection.magnitude, 3))), Time.fixedDeltaTime * 2);
 
             anim.SetIKPositionWeight(AvatarIKGoal.RightHand, weight);
@@ -228,13 +180,11 @@ public class MoveChanPhisical : MonoBehaviour
             anim.SetIKPosition(AvatarIKGoal.LeftHand, closeThing.transform.position - transform.right * 0.1f);
             anim.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.identity);
 
-            // Verifica se o botão de ataque foi pressionado
             if (Input.GetButtonDown("Fire1"))
             {
-                // Código para criar ou destruir o FixedJoint para segurar objetos
+                // Aqui poderia ter alguma interação com o objeto
             }
 
-            // Verifica se a inportancia é menor ou igual a zero
             if (weight <= 0)
             {
                 Destroy(closeThing);
@@ -244,22 +194,9 @@ public class MoveChanPhisical : MonoBehaviour
                     return;
                 }
             }
-
-            //verifica se o personagem parou e posiciona os pes no chao
-            if (grounded && weight > 0)
-            {
-                Vector3 footDirection = Vector3.down;
-                float lookTo = Vector3.Dot(footDirection.normalized, transform.forward);
-                weight = Mathf.Lerp(weight, (lookTo * 3 / (Mathf.Pow(footDirection.magnitude, 3))), Time.fixedDeltaTime * 2);
-                anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, weight);
-                anim.SetIKRotationWeight(AvatarIKGoal.LeftFoot, weight);
-                anim.SetIKPosition(AvatarIKGoal.LeftFoot, closeThing.transform.position - transform.right * 0.1f);
-                anim.SetIKRotation(AvatarIKGoal.LeftFoot, Quaternion.identity);
-            }
         }
     }
 
-    // Método OnCollisionEnter é chamado quando o personagem colide com outro objeto
     private void OnCollisionEnter(Collision collision)
     {
         wing.SetActive(false);
@@ -275,20 +212,17 @@ public class MoveChanPhisical : MonoBehaviour
         }
     }
 
-    // Método OnCollisionExit é chamado quando o personagem deixa de colidir com outro objeto
     private void OnCollisionExit(Collision collision)
     {
-        // Não há código adicional necessário aqui
+        // Nada necessário aqui
     }
-    /// <summary>
-    /// Método para controlar o voo do personagem.
-    /// </summary>
+
     void FlyControl()
     {
         rdb.linearDamping = 0.4f;
         float velocity = Mathf.Abs(rdb.linearVelocity.x) + Mathf.Abs(rdb.linearVelocity.z);
         velocity = Mathf.Clamp(velocity, 0, 10);
-        
+
         rdb.AddRelativeForce(new Vector3(0, velocity * 50, 500));
 
         Vector3 movfly = new Vector3(Vector3.forward.x * flyvelocity, 0, Vector3.forward.z * flyvelocity);
@@ -301,9 +235,49 @@ public class MoveChanPhisical : MonoBehaviour
 
         wing.transform.localRotation = Quaternion.Euler(0, 0, angz * 50);
 
-
         flyvelocity -= angx * 0.01f;
         flyvelocity = Mathf.Lerp(flyvelocity, 3, Time.fixedDeltaTime);
         flyvelocity = Mathf.Clamp(flyvelocity, 0, 5);
+    }
+
+    // =========================
+    // SISTEMA DE DANO AQUI 👇👇
+    // =========================
+
+    public void Hit()
+    {
+        DealDamage();
+    }
+
+    void DealDamage()
+    {
+        float range = 3f;  // Alcance do ataque
+        int damage = 20;   // Dano causado
+        LayerMask enemyLayer = LayerMask.GetMask("Enemy");
+
+        RaycastHit hit;
+        Vector3 origin = transform.position + Vector3.up;  // Origem um pouco acima do chão
+        Vector3 direction = transform.forward;
+
+        Debug.DrawRay(origin, direction * range, Color.red, 1f); // Para visualizar o raio no editor
+
+        if (Physics.Raycast(origin, direction, out hit, range, enemyLayer))
+        {
+            Debug.Log("Acertou inimigo: " + hit.collider.name);
+
+            Vida vida = hit.collider.GetComponent<Vida>();
+            if (vida != null)
+            {
+                vida.TakeDamage(damage);
+            }
+            else
+            {
+                Debug.LogWarning("Inimigo atingido não tem componente Vida!");
+            }
+        }
+        else
+        {
+            Debug.Log("Ataque não acertou ninguém.");
+        }
     }
 }
