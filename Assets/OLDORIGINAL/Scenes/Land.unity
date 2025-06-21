@@ -1958,7 +1958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &320452734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7991,7 +7991,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 50
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -8017,8 +8017,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14738859, y: 0.7212223, z: 0.16173849, w: 0.6572334}
-  m_LocalPosition: {x: 1561.773, y: 48.300003, z: 703.87787}
+  m_LocalRotation: {x: 0.15487686, y: 0.34154966, z: -0.057171702, w: 0.9252505}
+  m_LocalPosition: {x: 31.640041, y: 42.25, z: -148.66296}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14022,6 +14022,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 292413717540201935, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
+      propertyPath: startingWeaponPrefab
+      value: 
+      objectReference: {fileID: 6368199687323084447, guid: 6e531786c64d54a4680d0eaf561ca3a1, type: 3}
     - target: {fileID: 2012696493311067274, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 33.9
