@@ -7991,7 +7991,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -8017,8 +8017,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15487686, y: 0.34154966, z: -0.057171702, w: 0.9252505}
-  m_LocalPosition: {x: 31.640041, y: 42.25, z: -148.66296}
+  m_LocalRotation: {x: -0.14738859, y: 0.7212223, z: 0.16173849, w: 0.6572334}
+  m_LocalPosition: {x: 1561.773, y: 48.300003, z: 703.87787}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10100,11 +10100,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1834883966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1053859316 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2012696493311170922, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
-  m_PrefabInstance: {fileID: 7178004968186966790}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1066973576
 GameObject:
   m_ObjectHideFlags: 0
@@ -11965,37 +11960,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &1562671746
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1562671747}
-  m_Layer: 6
-  m_Name: Firepoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1562671747
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562671746}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.091, z: 0.99}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1938686098}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1575703917
 GameObject:
   m_ObjectHideFlags: 0
@@ -13327,7 +13291,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 292413717540201935, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
   m_PrefabInstance: {fileID: 7178004968186966790}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053859316}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0fce432535810f47a1869a6a94a3735, type: 3}
@@ -13338,68 +13302,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7152131347005336097, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
   m_PrefabInstance: {fileID: 7178004968186966790}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053859316}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2f6437a11db2134897b54258a938e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1938686124 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 7046437972623310166, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
-  m_PrefabInstance: {fileID: 7178004968186966790}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1938686125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053859316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f07bb24724de6bc42bc1366f97d4e4d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  throwDistance: 12
-  explosionRadius: 4
-  bombDamage: 50
-  delayBeforeExplode: 0.7
-  explosionEffectPrefab: {fileID: 3749536854615067393, guid: bbfba7aa2d68e2d43bcc28c10fd27e52, type: 3}
---- !u!114 &1938686126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053859316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cafa26d2cc8172e4992d98e632d5bc8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8569252625748967082, guid: b4e39f9695e19bf4781158c6e26448ff, type: 3}
-  firePoint: {fileID: 1562671747}
-  projectileSpeed: 20
-  shotDamage: 25
---- !u!114 &1938686127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053859316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0d523c93d1d17d408b4c261246daa98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 1938686124}
-  jumpForce: 65
-  jumpEffectPrefab: {fileID: 0}
 --- !u!1 &1953066807 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4777976800501820411, guid: 1c8950e890f8de640b645d9ccc90ffa4, type: 3}
@@ -14160,20 +14068,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2012696493311067274, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1562671747}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2012696493311170922, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1938686125}
-    - targetCorrespondingSourceObject: {fileID: 2012696493311170922, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1938686126}
-    - targetCorrespondingSourceObject: {fileID: 2012696493311170922, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1938686127}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
 --- !u!1001 &7384157554796590328
 PrefabInstance:
