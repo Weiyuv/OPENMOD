@@ -18,13 +18,22 @@ public class UIBolsaIcon : MonoBehaviour
             if (player != null)
             {
                 bolsa = player.GetComponent<Bolsa>();
+                if (bolsa == null)
+                    Debug.LogWarning("Player encontrado, mas sem componente Bolsa!");
+            }
+            else
+            {
+                Debug.LogWarning("Nenhum objeto com tag Player encontrado!");
             }
         }
     }
 
     void Start()
     {
-        panelInventario.SetActive(false);
+        if (panelInventario != null)
+            panelInventario.SetActive(false);
+        else
+            Debug.LogWarning("panelInventario não atribuído!");
     }
 
     void Update()
@@ -32,7 +41,11 @@ public class UIBolsaIcon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             inventarioAtivo = !inventarioAtivo;
-            panelInventario.SetActive(inventarioAtivo);
+
+            if (panelInventario != null)
+                panelInventario.SetActive(inventarioAtivo);
+            else
+                Debug.LogWarning("panelInventario não atribuído!");
 
             if (inventarioAtivo)
                 AtualizarUI();
@@ -41,35 +54,66 @@ public class UIBolsaIcon : MonoBehaviour
 
     public void AtualizarUI()
     {
+        if (bolsa == null)
+        {
+            Debug.LogError("Bolsa está NULA. Não dá pra atualizar o inventário!");
+            return;
+        }
+
+        if (contentItens == null)
+        {
+            Debug.LogError("contentItens não está atribuído no UIBolsaIcon!");
+            return;
+        }
+
+        if (itemPrefab == null)
+        {
+            Debug.LogError("itemPrefab não está atribuído!");
+            return;
+        }
+
+        Debug.Log("Atualizando UI. Itens na bolsa: " + bolsa.itens.Count);
+
+        // Limpa os filhos antigos
         foreach (Transform child in contentItens)
         {
             Destroy(child.gameObject);
         }
 
+        // Instancia o item para cada elemento da bolsa
         foreach (var item in bolsa.itens)
         {
+            Debug.Log("Mostrando item: " + item.nome);
+
             GameObject obj = Instantiate(itemPrefab, contentItens);
 
             Transform iconTrans = obj.transform.Find("Icon");
             Transform nomeTrans = obj.transform.Find("Nome");
 
-            if (iconTrans != null && nomeTrans != null)
+            if (iconTrans == null || nomeTrans == null)
             {
-                Image img = iconTrans.GetComponent<Image>();
-                Text txt = nomeTrans.GetComponent<Text>();
-
-                if (img != null)
-                    img.sprite = item.icone;
-
-                if (txt != null)
-                    txt.text = item.nome;
+                Debug.LogError("Prefab do item está faltando os filhos 'Icon' ou 'Nome'!");
+                continue;
             }
+
+            Image img = iconTrans.GetComponent<Image>();
+            Text txt = nomeTrans.GetComponent<Text>();
+
+            if (img == null || txt == null)
+            {
+                Debug.LogError("Filho 'Icon' precisa ter Image e 'Nome' precisa ter Text!");
+                continue;
+            }
+
+            img.sprite = item.icone;
+            txt.text = item.nome;
         }
     }
 
     public void FecharInventario()
     {
         inventarioAtivo = false;
-        panelInventario.SetActive(false);
+        if (panelInventario != null)
+            panelInventario.SetActive(false);
     }
 }
