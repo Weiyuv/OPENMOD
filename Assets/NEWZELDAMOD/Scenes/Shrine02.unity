@@ -1517,7 +1517,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -1543,8 +1543,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725778544}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.119372614, y: -0.000000018596769, z: 0.000000002235933, w: 0.9928495}
-  m_LocalPosition: {x: 3.6, y: 4.66, z: -5.1}
+  m_LocalRotation: {x: -0.14739016, y: 0.721222, z: 0.16174026, w: 0.6572329}
+  m_LocalPosition: {x: 1810.2429, y: 244.4, z: 1615.588}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2139,10 +2139,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 6f43b7231d70da048b9effba0fac5c8d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1284847472}
+      addedObject: {fileID: 1284847474}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 6f43b7231d70da048b9effba0fac5c8d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1284847474}
+      addedObject: {fileID: 1284847475}
   m_SourcePrefab: {fileID: 100100000, guid: 6f43b7231d70da048b9effba0fac5c8d, type: 3}
 --- !u!1 &1156856332
 GameObject:
@@ -2640,18 +2640,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 6f43b7231d70da048b9effba0fac5c8d, type: 3}
   m_PrefabInstance: {fileID: 1148780886}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1284847472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1284847471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da0c71cdcf33664ba270b9303c78f81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1284847474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2673,6 +2661,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1284847475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284847471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fae60d03866df74485d71993a9c2e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: MOD OPEN
 --- !u!1 &1301716575
 GameObject:
   m_ObjectHideFlags: 0

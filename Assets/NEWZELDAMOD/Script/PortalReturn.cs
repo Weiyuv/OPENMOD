@@ -34,17 +34,13 @@ public class PortalReturn : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInRange = true;
-        }
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInRange = false;
-        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)

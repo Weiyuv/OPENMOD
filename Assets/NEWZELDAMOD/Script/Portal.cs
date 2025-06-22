@@ -6,10 +6,17 @@ public class Portal : MonoBehaviour
     public string sceneToLoad;
     private bool playerInRange;
     private Transform player;
+    private Bolsa bolsa;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (player != null)
+        {
+            bolsa = player.GetComponent<Bolsa>();
+            if (bolsa == null)
+                Debug.LogWarning("Bolsa não encontrada no player!");
+        }
     }
 
     void Update()
@@ -38,7 +45,16 @@ public class Portal : MonoBehaviour
 
     void TeleportPlayer()
     {
-        TeleportManager.Instance.SaveTeleportData(SceneManager.GetActiveScene().name, player.position);
+        if (player != null)
+        {
+            GameManager.instance.playerPosition = player.position;
+
+            if (bolsa != null)
+            {
+                bolsa.SalvarBolsaNoGameManager();
+            }
+        }
+
         SceneManager.LoadScene(sceneToLoad);
     }
 }
