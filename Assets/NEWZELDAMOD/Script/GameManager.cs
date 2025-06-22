@@ -1,13 +1,14 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    // Guarda só nomes dos itens para salvar
-    public List<string> savedBolsaNomes = new List<string>();
     public Vector3 playerPosition;
+
+    [HideInInspector]
+    public List<ItemSO> itensDaBolsa = new List<ItemSO>();
 
     void Awake()
     {
@@ -20,5 +21,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SalvarBolsa(List<ItemSO> itensAtuais)
+    {
+        itensDaBolsa = new List<ItemSO>(itensAtuais);
+        Debug.Log("Itens da bolsa salvos: " + itensDaBolsa.Count);
     }
 }

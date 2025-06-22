@@ -947,7 +947,7 @@ PrefabInstance:
       addedObject: {fileID: 3012355935725081112}
     - targetCorrespondingSourceObject: {fileID: 8802130219495088100, guid: 40daa8e1b273a644f81288fa519caf50, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5617239465619455917}
+      addedObject: {fileID: 2766263226668811210}
     - targetCorrespondingSourceObject: {fileID: 8802130219495087616, guid: 40daa8e1b273a644f81288fa519caf50, type: 3}
       insertIndex: -1
       addedObject: {fileID: 842231434}
@@ -1242,8 +1242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbfce78eb73f194eac3ae1d54274310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bolsa: {fileID: 5617239465619455917}
---- !u!114 &5617239465619455917
+  bolsa: {fileID: 2766263226668811210}
+  listaMestraItens:
+  - {fileID: 11400000, guid: c56b87d2e30bb6249811ebb1383c3e61, type: 2}
+--- !u!114 &2766263226668811210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
