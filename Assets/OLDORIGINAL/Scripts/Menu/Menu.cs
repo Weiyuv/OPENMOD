@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Land");
+        SceneManager.LoadScene("MOD OPEN");
     }
 
     public void Options()

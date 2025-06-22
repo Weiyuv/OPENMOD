@@ -40,7 +40,7 @@ public class Portal : MonoBehaviour
     {
         TeleportManager.Instance.SaveTeleportData(SceneManager.GetActiveScene().name, player.position);
 
-        // SALVA A BOLSA ANTES DE MUDAR DE CENA
+        // Salvar bolsa antes de trocar de cena
         if (player.TryGetComponent<Bolsa>(out Bolsa bolsa))
         {
             bolsa.SalvarBolsaNoGameManager();

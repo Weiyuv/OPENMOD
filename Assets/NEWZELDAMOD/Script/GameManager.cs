@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public Vector3 playerPosition;
+    public Vector3 respawnPosition;
 
     [HideInInspector]
     public List<ItemSO> itensDaBolsa = new List<ItemSO>();
@@ -27,5 +28,11 @@ public class GameManager : MonoBehaviour
     {
         itensDaBolsa = new List<ItemSO>(itensAtuais);
         Debug.Log("Itens da bolsa salvos: " + itensDaBolsa.Count);
+    }
+
+    public void DefinirRespawn(Vector3 novaPosicao)
+    {
+        respawnPosition = novaPosicao;
+        Debug.Log("Novo respawn definido: " + respawnPosition);
     }
 }

@@ -29,10 +29,9 @@ public class Bolsa : MonoBehaviour
 
     public void CarregarBolsaDoGameManager(List<ItemSO> listaMestra)
     {
-        itens.Clear();
-
         if (GameManager.instance != null && GameManager.instance.itensDaBolsa.Count > 0)
         {
+            itens.Clear();
             foreach (ItemSO item in GameManager.instance.itensDaBolsa)
             {
                 if (listaMestra.Contains(item))
@@ -42,7 +41,7 @@ public class Bolsa : MonoBehaviour
         }
         else
         {
-            Debug.Log("Nenhum item salvo no GameManager para carregar.");
+            Debug.Log("Nenhum item salvo no GameManager para carregar. Mantendo itens atuais.");
         }
     }
 }

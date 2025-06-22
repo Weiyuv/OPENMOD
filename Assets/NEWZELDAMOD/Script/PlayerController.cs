@@ -1,17 +1,20 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
     public Bolsa bolsa;
-    public List<ItemSO> listaMestraItens;  // Arraste aqui todos os itens criados no editor
+    public List<ItemSO> listaMestraItens;
 
     void Start()
     {
         if (GameManager.instance != null)
         {
-            transform.position = GameManager.instance.playerPosition;
+            // Faz o player nascer na posição de respawn
+            transform.position = GameManager.instance.respawnPosition;
 
+            // Carrega a bolsa
             if (bolsa != null)
             {
                 bolsa.CarregarBolsaDoGameManager(listaMestraItens);
@@ -29,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Exemplo: adicionar o primeiro item da lista mestra ao apertar 'P'
+        // Exemplo: adicionar o primeiro item da lista ao apertar 'P'
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (bolsa != null && listaMestraItens.Count > 0)
@@ -38,7 +41,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Mostrar bolsa no console ao apertar 'O'
+        // Mostrar a bolsa no console com 'O'
         if (Input.GetKeyDown(KeyCode.O))
         {
             if (bolsa != null)
@@ -46,5 +49,22 @@ public class PlayerController : MonoBehaviour
                 bolsa.MostrarBolsa();
             }
         }
+
+        // TESTE DE MORTE E RESPAWN: apertar K para "morrer"
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("Player morreu. Fazendo respawn...");
+            MorrerERespawnar();
+        }
+    }
+
+    public void MorrerERespawnar()
+    {
+        if (GameManager.instance != null && bolsa != null)
+        {
+            bolsa.SalvarBolsaNoGameManager();
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
