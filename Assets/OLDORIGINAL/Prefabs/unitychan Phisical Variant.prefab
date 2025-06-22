@@ -1257,7 +1257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499c79cf35c50b54ca7c8dff12d10406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itens: []
+  itens:
+  - {fileID: 11400000, guid: c56b87d2e30bb6249811ebb1383c3e61, type: 2}
 --- !u!95 &2012696493318597386 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8802130219485703556, guid: 40daa8e1b273a644f81288fa519caf50, type: 3}

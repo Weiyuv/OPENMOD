@@ -1219,7 +1219,6 @@ GameObject:
   - component: {fileID: 485588}
   - component: {fileID: 9586004}
   - component: {fileID: 8208736395477432750}
-  - component: {fileID: 9186006433421947331}
   - component: {fileID: 3135493568156713950}
   - component: {fileID: 8662226209580782195}
   - component: {fileID: 2352780004984079613}
@@ -1259,7 +1258,7 @@ Animator:
   m_GameObject: {fileID: 139696}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5bd61d42e42f44b4a922495212e06f3f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4532899d076db8b4fbd4a297f90554f5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1284,28 +1283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
---- !u!64 &9186006433421947331
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139696}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!65 &3135493568156713950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1325,7 +1302,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 4, z: 12}
+  m_Size: {x: 2, y: 4, z: 6}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &8662226209580782195
 MonoBehaviour:
@@ -1343,7 +1320,7 @@ MonoBehaviour:
   agent: {fileID: 2352780004984079613}
   anim: {fileID: 9586004}
   render: {fileID: 13772040}
-  DistanceToAttack: 3
+  DistanceToAttack: 10
   state: 0
 --- !u!195 &2352780004984079613
 NavMeshAgent:
@@ -1353,8 +1330,8 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139696}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
-  m_Radius: 0.5
+  m_AgentTypeID: -334000983
+  m_Radius: 7
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1363,7 +1340,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 2.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -1406,7 +1383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b2589afe23bdf4e99dc14e67e83b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 300
 --- !u!1 &139704
 GameObject:
   m_ObjectHideFlags: 0
