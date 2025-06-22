@@ -1,8 +1,10 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
     public Bolsa bolsa;
+    public List<ItemSO> listaMestraItens;  // Arraste aqui todos os itens criados no editor
 
     void Start()
     {
@@ -12,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
             if (bolsa != null)
             {
-                bolsa.CarregarBolsaDoGameManager();
+                bolsa.CarregarBolsaDoGameManager(listaMestraItens);
             }
             else
             {
@@ -27,16 +29,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        // Exemplo: adicionar o primeiro item da lista mestra ao apertar 'P'
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            if (bolsa != null)
-                bolsa.AdicionarItem("Espada");
+            if (bolsa != null && listaMestraItens.Count > 0)
+            {
+                bolsa.AdicionarItem(listaMestraItens[0]);
+            }
         }
 
+        // Mostrar bolsa no console ao apertar 'O'
         if (Input.GetKeyDown(KeyCode.O))
         {
             if (bolsa != null)
+            {
                 bolsa.MostrarBolsa();
+            }
         }
     }
 }

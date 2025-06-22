@@ -3,32 +3,31 @@ using UnityEngine;
 
 public class Bolsa : MonoBehaviour
 {
-    public List<ItemDisplay> itens = new List<ItemDisplay>();
+    public List<ItemSO> itens = new List<ItemSO>();
 
-    public void AdicionarItem(string nomeItem, Sprite iconeItem)
+    public void AdicionarItem(ItemSO item)
     {
-        itens.Add(new ItemDisplay(nomeItem, iconeItem));
-        Debug.Log("Item adicionado à bolsa: " + nomeItem);
+        itens.Add(item);
+        Debug.Log("Item adicionado à bolsa: " + item.nome);
     }
 
-    public void RemoverItem(string nomeItem)
+    public void RemoverItem(ItemSO item)
     {
-        ItemDisplay itemRemover = itens.Find(item => item.nome == nomeItem);
-        if (itemRemover != null)
+        if (itens.Contains(item))
         {
-            itens.Remove(itemRemover);
-            Debug.Log("Item removido da bolsa: " + nomeItem);
+            itens.Remove(item);
+            Debug.Log("Item removido da bolsa: " + item.nome);
         }
         else
         {
-            Debug.Log("Item não encontrado na bolsa: " + nomeItem);
+            Debug.Log("Item não encontrado na bolsa: " + item.nome);
         }
     }
 
     public void MostrarBolsa()
     {
         Debug.Log("Conteúdo da bolsa:");
-        foreach (ItemDisplay item in itens)
+        foreach (ItemSO item in itens)
         {
             Debug.Log(item.nome);
         }
@@ -36,15 +35,23 @@ public class Bolsa : MonoBehaviour
 
     public void SalvarBolsaNoGameManager()
     {
-        GameManager.instance.savedBolsa = new List<string>();
-        foreach (ItemDisplay item in itens)
-        {
-            GameManager.instance.savedBolsa.Add(item.nome);
-        }
+        List<string> nomes = new List<string>();
+        foreach (ItemSO item in itens)
+            nomes.Add(item.name);
+
+        GameManager.instance.savedBolsaNomes = nomes;
     }
 
-    public void CarregarBolsaDoGameManager()
+    public void CarregarBolsaDoGameManager(List<ItemSO> listaMestra)
     {
-        // Aqui você ainda vai precisar de um banco de itens pra recuperar os ícones
+        itens.Clear();
+        foreach (string nome in GameManager.instance.savedBolsaNomes)
+        {
+            ItemSO item = listaMestra.Find(i => i.name == nome);
+            if (item != null)
+                itens.Add(item);
+            else
+                Debug.LogWarning($"Item {nome} não encontrado na lista mestra!");
+        }
     }
 }

@@ -5,7 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public List<string> savedBolsa = new List<string>();
+    // Guarda só nomes dos itens para salvar
+    public List<string> savedBolsaNomes = new List<string>();
     public Vector3 playerPosition;
 
     void Awake()
