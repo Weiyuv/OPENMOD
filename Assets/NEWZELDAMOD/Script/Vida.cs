@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Vida : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth = 10000;
     private int currentHealth;
 
     void Start()
