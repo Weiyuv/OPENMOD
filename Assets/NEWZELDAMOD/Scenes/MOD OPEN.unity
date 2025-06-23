@@ -3684,20 +3684,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2766263226668811210, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
       propertyPath: itens.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2766263226668811210, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
       propertyPath: 'itens.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 7911f1fc8e6e3ac4b88acddb4f289ff2, type: 2}
+    - target: {fileID: 2766263226668811210, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
+      propertyPath: 'itens.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ddcaed94cbf9f2e47a043d747a25bec8, type: 2}
+    - target: {fileID: 2766263226668811210, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
+      propertyPath: 'itens.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c262cf81ef99f9249989c3e8d54505d4, type: 2}
     - target: {fileID: 3012355935725081112, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
       propertyPath: listaMestraItens.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3012355935725081112, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
       propertyPath: 'listaMestraItens.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 7911f1fc8e6e3ac4b88acddb4f289ff2, type: 2}
+    - target: {fileID: 3012355935725081112, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
+      propertyPath: 'listaMestraItens.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ddcaed94cbf9f2e47a043d747a25bec8, type: 2}
+    - target: {fileID: 3012355935725081112, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
+      propertyPath: 'listaMestraItens.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c262cf81ef99f9249989c3e8d54505d4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9390,7 +9406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024731728}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14739011, y: 0.721222, z: 0.16174018, w: 0.657233}
+  m_LocalRotation: {x: -0.1473901, y: 0.721222, z: 0.16174017, w: 0.65723294}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

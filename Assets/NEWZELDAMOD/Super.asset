@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bf657507cccbf5499bddb60c3737d09, type: 3}
-  m_Name: Xablau
+  m_Name: Super
   m_EditorClassIdentifier: 
-  nome: Xablau
-  icone: {fileID: 21300000, guid: 3a0702ceb8fcbe44b80f396ec8652653, type: 3}
+  nome: Super Jump
+  icone: {fileID: 21300000, guid: 4a7a313208ce0fe4c9f3a9c6304331af, type: 3}
