@@ -2014,7 +2014,7 @@ Transform:
   m_GameObject: {fileID: 725778544}
   serializedVersion: 2
   m_LocalRotation: {x: 0.119372614, y: -0.000000017125554, z: 0.0000000020590456, w: 0.9928495}
-  m_LocalPosition: {x: 3.6, y: 4.66, z: -5.1}
+  m_LocalPosition: {x: 9.95, y: -2.27, z: 74.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2890,6 +2890,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 6f43b7231d70da048b9effba0fac5c8d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1284847474}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 6f43b7231d70da048b9effba0fac5c8d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1284847476}
   m_SourcePrefab: {fileID: 100100000, guid: 6f43b7231d70da048b9effba0fac5c8d, type: 3}
 --- !u!1 &1156856332
 GameObject:
@@ -3483,6 +3486,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 100, y: 100, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1284847476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284847471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fae60d03866df74485d71993a9c2e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: MOD OPEN
 --- !u!1 &1301716575
 GameObject:
   m_ObjectHideFlags: 0
@@ -4180,7 +4196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3984772761672229192, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
       propertyPath: maxHealth
-      value: 10000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8208736395477432750, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
       propertyPath: m_Enabled

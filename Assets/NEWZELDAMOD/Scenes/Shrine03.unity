@@ -3863,7 +3863,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 10, z: 10}
+  m_Size: {x: 100, y: 100, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1284847475
 MonoBehaviour:
@@ -5609,6 +5609,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2166955569155331675, guid: bfccceceb872d4f43873bb647a64e47b, type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 4071587682084671612, guid: bfccceceb872d4f43873bb647a64e47b, type: 3}
       propertyPath: m_Name
       value: Blue
