@@ -41,7 +41,7 @@ public class Bolsa : MonoBehaviour
         }
         else
         {
-            Debug.Log("Nenhum item salvo no GameManager para carregar. Mantendo itens atuais.");
+            Debug.Log("Nenhum item salvo no GameManager para carregar.");
         }
     }
 }
