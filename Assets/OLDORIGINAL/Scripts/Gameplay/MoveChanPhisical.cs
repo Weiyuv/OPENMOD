@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +13,7 @@ public class MoveChanPhisical : MonoBehaviour
     public float jumpspeed = 8;
     public float gravity = 20;
 
-    public bool haveWeapons = false;  // <-- Adicionado aqui ✅
+    public bool haveWeapons = false;
 
     float jumptime;
     float flyvelocity = 3;
@@ -30,14 +28,11 @@ public class MoveChanPhisical : MonoBehaviour
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().name.Equals("Land"))
-        {
-            if (PlayerPrefs.HasKey("OldPlayerPosition"))
-            {
-                print("movendo " + PlayerPrefsX.GetVector3("OldPlayerPosition"));
-                transform.position = PlayerPrefsX.GetVector3("OldPlayerPosition");
-            }
-        }
+        Vector3 posPadrao = transform.position; // posição padrão = posição atual do objeto no Editor
+        Vector3 posCarregada = PlayerPrefsUtils.GetVector3("OldPlayerPosition", posPadrao);
+        transform.position = posCarregada;
+        Debug.Log("Player posição carregada: " + posCarregada);
+
         currentCamera = Camera.main.gameObject;
     }
 
@@ -72,7 +67,7 @@ public class MoveChanPhisical : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             anim.SetTrigger("PunchA");
-            Hit(); // Chama o ataque quando apertar o botão
+            Hit();
         }
 
         if (Input.GetButton("Fire1") && wing.activeSelf)
@@ -149,74 +144,6 @@ public class MoveChanPhisical : MonoBehaviour
         }
     }
 
-    void OnAnimatorIK()
-    {
-        if (wing.activeSelf && rightHandObj != null)
-        {
-            anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-            anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
-            anim.SetIKPosition(AvatarIKGoal.RightHand, rightHandObj.position);
-            anim.SetIKRotation(AvatarIKGoal.RightHand, rightHandObj.rotation);
-
-            anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
-            anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
-            anim.SetIKPosition(AvatarIKGoal.LeftHand, leftHandObj.position);
-            anim.SetIKRotation(AvatarIKGoal.LeftHand, leftHandObj.rotation);
-        }
-
-        if (closeThing)
-        {
-            Vector3 handDirection = closeThing.transform.position - transform.position;
-            float lookto = Vector3.Dot(handDirection.normalized, transform.forward);
-            weight = Mathf.Lerp(weight, (lookto * 3 / (Mathf.Pow(handDirection.magnitude, 3))), Time.fixedDeltaTime * 2);
-
-            anim.SetIKPositionWeight(AvatarIKGoal.RightHand, weight);
-            anim.SetIKRotationWeight(AvatarIKGoal.RightHand, weight);
-            anim.SetIKPosition(AvatarIKGoal.RightHand, closeThing.transform.position + transform.right * 0.1f);
-            anim.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.identity);
-
-            anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, weight);
-            anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, weight);
-            anim.SetIKPosition(AvatarIKGoal.LeftHand, closeThing.transform.position - transform.right * 0.1f);
-            anim.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.identity);
-
-            if (Input.GetButtonDown("Fire1"))
-            {
-                // Aqui poderia ter alguma interação com o objeto
-            }
-
-            if (weight <= 0)
-            {
-                Destroy(closeThing);
-                if (joint)
-                {
-                    Destroy(joint);
-                    return;
-                }
-            }
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        wing.SetActive(false);
-
-        if (collision.transform.position.y > transform.position.y + .05f)
-        {
-            if (!closeThing)
-                closeThing = new GameObject("Handpos");
-
-            weight = 0;
-            closeThing.transform.parent = collision.gameObject.transform;
-            closeThing.transform.position = collision.GetContact(0).point;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        // Nada necessário aqui
-    }
-
     void FlyControl()
     {
         rdb.linearDamping = 0.4f;
@@ -240,10 +167,6 @@ public class MoveChanPhisical : MonoBehaviour
         flyvelocity = Mathf.Clamp(flyvelocity, 0, 5);
     }
 
-    // =========================
-    // SISTEMA DE DANO AQUI 👇👇
-    // =========================
-
     public void Hit()
     {
         DealDamage();
@@ -251,15 +174,15 @@ public class MoveChanPhisical : MonoBehaviour
 
     void DealDamage()
     {
-        float range = 3f;  // Alcance do ataque
-        int damage = 20;   // Dano causado
+        float range = 3f;
+        int damage = 20;
         LayerMask enemyLayer = LayerMask.GetMask("Enemy");
 
         RaycastHit hit;
-        Vector3 origin = transform.position + Vector3.up;  // Origem um pouco acima do chão
+        Vector3 origin = transform.position + Vector3.up;
         Vector3 direction = transform.forward;
 
-        Debug.DrawRay(origin, direction * range, Color.red, 1f); // Para visualizar o raio no editor
+        Debug.DrawRay(origin, direction * range, Color.red, 1f);
 
         if (Physics.Raycast(origin, direction, out hit, range, enemyLayer))
         {
