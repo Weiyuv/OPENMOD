@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            // Faz o player nascer na posição de respawn
-            transform.position = GameManager.instance.respawnPosition;
+            // Remove posicionar player no respawn (pois não existe mais)
+            // transform.position = GameManager.instance.respawnPosition; 
 
             // Carrega a bolsa
             if (bolsa != null)
@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Mostrar a bolsa no console com 'O'
-        if (Input.GetKeyDown(KeyCode.O))
+        // Mostrar a bolsa no console com 'B'
+        if (Input.GetKeyDown(KeyCode.B))
         {
             if (bolsa != null)
             {
@@ -50,10 +50,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // TESTE DE MORTE E RESPAWN: apertar K para "morrer"
+        // TESTE DE MORTE E RECARREGAR CENA: apertar K para "morrer"
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Debug.Log("Player morreu. Fazendo respawn...");
+            Debug.Log("Player morreu. Recarregando cena...");
             MorrerERespawnar();
         }
     }
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
             bolsa.SalvarBolsaNoGameManager();
         }
 
+        // Apenas recarrega a cena atual (sem reposicionar player via respawn)
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
