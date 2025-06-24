@@ -38,15 +38,12 @@ public class Portal : MonoBehaviour
 
     void TeleportPlayer()
     {
-        if (GameManager.instance != null && player != null)
-        {
-            string cenaAtual = SceneManager.GetActiveScene().name;
-            GameManager.instance.SalvarPosicaoCena(cenaAtual, player.position);
+        TeleportManager.Instance.SaveTeleportData(SceneManager.GetActiveScene().name, player.position);
 
-            if (player.TryGetComponent<Bolsa>(out Bolsa bolsa))
-            {
-                bolsa.SalvarBolsaNoGameManager();
-            }
+        // Salvar bolsa antes de trocar de cena
+        if (player.TryGetComponent<Bolsa>(out Bolsa bolsa))
+        {
+            bolsa.SalvarBolsaNoGameManager();
         }
 
         SceneManager.LoadScene(sceneToLoad);
